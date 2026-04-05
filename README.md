@@ -42,3 +42,9 @@ Hebrew example:
 ```
 /'קראטוןםפ][שדגכעיחלךף,זסבהנמצתץ.
 ```
+
+## Settings UI
+
+You can open the Settings UI by clicking on the extension icon or by visiting "Extension Options" from the extension manager or context menus.
+
+<img width="883" height="809" alt="image" src="https://github.com/user-attachments/assets/58ff5468-5186-464e-b1f5-ffa5444f3104" />
