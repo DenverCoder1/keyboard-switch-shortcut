@@ -277,7 +277,7 @@ async function onKeyDown(e) {
 
         settings = {
             ...shortcutDefaults,
-            "shortcut-auto-switch": { ctrl: false, shift: true, alt: true, key: "A", direction: "auto" },
+            "shortcut-auto-switch": getAutoSwitchDefaultShortcut(),
             enabledLayouts: getAvailableLayouts(),
             autoEnabled: true,
             customLayouts: {},

@@ -25,9 +25,9 @@ async function loadSettings() {
     }
 
     const defaults = {
-        enabledLayouts: getAvailableLayouts(),
+        enabledLayouts: [getAvailableLayouts()[0]],
         ...shortcutDefaults,
-        "shortcut-auto-switch": { ctrl: false, shift: true, alt: true, key: "A", direction: "auto" },
+        "shortcut-auto-switch": getAutoSwitchDefaultShortcut(),
         customLayouts: {},
     };
     const merged = { ...defaults, ...settings };
@@ -292,7 +292,7 @@ async function saveSettings() {
             ctrl: document.getElementById("autoCtrl").checked,
             shift: document.getElementById("autoShift").checked,
             alt: document.getElementById("autoAlt").checked,
-            key: document.getElementById("autoKey").value || "A",
+            key: document.getElementById("autoKey").value || getAutoSwitchDefaultShortcut().key,
             direction: "auto",
         };
 
@@ -711,8 +711,8 @@ async function populateTestSection() {
     if (!container) return;
 
     const settings = await chrome.storage.sync.get({
-        enabledLayouts: ["hebrew-english", "russian-english"],
-        "shortcut-auto-switch": { ctrl: false, shift: true, alt: true, key: "A", direction: "auto" },
+        enabledLayouts: [getAvailableLayouts()[0]],
+        "shortcut-auto-switch": getAutoSwitchDefaultShortcut(),
     });
 
     container.innerHTML = "";
@@ -722,8 +722,8 @@ async function populateTestSection() {
     for (const layoutId of allLayouts) {
         const config = getLayoutConfig(layoutId);
         const shortcutKey = `shortcut-${layoutId}`;
-        const shortcut = await chrome.storage.sync.get({ [shortcutKey]: null });
-        const sc = shortcut[shortcutKey];
+        const stored = await chrome.storage.sync.get({ [shortcutKey]: getDefaultShortcut(layoutId) });
+        const sc = stored[shortcutKey];
         const scLabel = sc ? formatShortcut(sc) : "";
         createTestButton(layoutId, config, scLabel);
     }

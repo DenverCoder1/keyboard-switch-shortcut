@@ -41,6 +41,9 @@ const KEYBOARD_LAYOUTS = {
     },
 };
 
+/** Default shortcut for the auto-detect & switch action */
+const AUTO_SWITCH_DEFAULT_SHORTCUT = { ctrl: false, shift: true, alt: true, key: "A", direction: "auto" };
+
 /**
  * Create a character mapping between two layouts
  * @param {string} from - Source layout characters
@@ -74,6 +77,14 @@ function createCharMapping(from, to) {
     }
 
     return mapping;
+}
+
+/**
+ * Get the default shortcut for the auto-detect & switch action
+ * @returns {Object}
+ */
+function getAutoSwitchDefaultShortcut() {
+    return AUTO_SWITCH_DEFAULT_SHORTCUT;
 }
 
 /**
