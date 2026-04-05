@@ -1,0 +1,784 @@
+/* ===== Reset ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== Base ===== */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    background: #f0f2f5;
+    color: #212529;
+    min-height: 100vh;
+    padding: 24px 16px;
+}
+
+/* ===== Layout ===== */
+.container {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+/* ===== Header / Page title ===== */
+header {
+    background: #fff;
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1976d2;
+    margin-bottom: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #6c757d;
+}
+
+/* ===== Cards (sections) ===== */
+.section {
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.section h2 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1976d2;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid #e9ecef;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.description {
+    color: #6c757d;
+    font-size: 13px;
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.description a {
+    color: #1976d2;
+    text-decoration: none;
+}
+
+.description a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Layout list (enable/disable pairs) ===== */
+.layout-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.layout-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background: #fff;
+    transition:
+        border-color 0.15s,
+        background 0.15s;
+    cursor: pointer;
+}
+
+.layout-item:hover {
+    background: #f8f9fa;
+    border-color: #adb5bd;
+}
+
+.layout-item.enabled {
+    border-color: #1976d2;
+    background: #e8f0fe;
+}
+
+.layout-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 12px;
+    cursor: pointer;
+    accent-color: #1976d2;
+}
+
+.layout-info {
+    flex: 1;
+}
+
+.layout-info strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.layout-info .help-text {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+/* ===== Shortcuts ===== */
+.shortcuts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.shortcut-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 14px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background: #f8f9fa;
+    transition:
+        border-color 0.15s,
+        background 0.15s;
+}
+
+/* Auto-detect row sits below the layout rows with spacing */
+.auto-switch-row {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.shortcut-item.enabled {
+    border-color: #1976d2;
+    background: #e8f0fe;
+}
+
+/* Checkbox that enables/disables a layout row */
+.layout-row-checkbox-label {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.layout-row-checkbox-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #1976d2;
+}
+
+/* Name + help text block inside each row */
+.layout-label-block {
+    flex: 1;
+    min-width: 140px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.layout-label-block strong,
+.layout-label-block .layout-name {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+/* Custom layout card wrapper – provides spacing & the left accent border */
+.custom-layout-card {
+    border-left: 3px solid #adb5bd;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 12px;
+}
+
+.custom-layout-card.enabled {
+    border-left-color: #1976d2;
+}
+
+/* The row inside a card has no individual border */
+.custom-layout-card .custom-layout-row {
+    border-left: none;
+    border-radius: 0 4px 0 0;
+    margin-bottom: 0;
+}
+
+/* Section label that appears above the first custom layout */
+.custom-layouts-header {
+    display: none;
+    font-size: 11px;
+    font-weight: 700;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.custom-layouts-header.visible {
+    display: block;
+}
+
+/* Add Custom Layout form heading inside the section */
+.custom-layout-form .form-heading {
+    font-size: 13px;
+    font-weight: 600;
+    color: #495057;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+}
+
+/* Add-form sits below the rows with a top separator */
+#addCustomLayoutForm {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e9ecef;
+}
+
+.shortcut-input-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.shortcut-input-group label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    min-width: auto;
+    flex: none;
+    color: #495057;
+}
+
+.shortcut-input-group input[type="checkbox"] {
+    cursor: pointer;
+    accent-color: #1976d2;
+    width: 14px;
+    height: 14px;
+}
+
+.shortcut-input-group input[type="text"] {
+    width: 46px;
+    padding: 5px 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: #fff;
+    color: #212529;
+}
+
+.shortcut-input-group input[type="text"]:focus {
+    outline: none;
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.15);
+}
+
+/* ===== Custom layout form ===== */
+.custom-layout-form {
+    padding: 16px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background: #f8f9fa;
+    margin-bottom: 16px;
+}
+
+.form-group {
+    margin-bottom: 14px;
+    flex: 1;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-row {
+    display: flex;
+    gap: 14px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 13px;
+    color: #495057;
+}
+
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 13px;
+    background: #fff;
+    color: #212529;
+    transition:
+        border-color 0.15s,
+        box-shadow 0.15s;
+}
+
+.form-group input[type="text"]:focus {
+    outline: none;
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.15);
+}
+
+.help-text {
+    display: block;
+    font-size: 11px;
+    color: #6c757d;
+    margin-top: 4px;
+    font-weight: normal;
+}
+
+/* ===== Custom layouts list ===== */
+.custom-layouts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.custom-layout-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.layout-info-row {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+}
+
+.custom-layout-item .layout-name {
+    font-weight: 600;
+    font-size: 13px;
+    color: #212529;
+    word-break: break-all;
+}
+
+.layout-name-input {
+    flex: 1;
+    padding: 4px 8px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid #1976d2;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.15);
+    min-width: 0;
+}
+
+.layout-actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+/* Two-input rename row inside custom layout label block */
+.layout-rename-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.layout-rename-row input[type="text"] {
+    flex: 1;
+    padding: 4px 8px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid #1976d2;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.15);
+    min-width: 0;
+}
+
+.rename-sep {
+    font-size: 13px;
+    color: #6c757d;
+    flex-shrink: 0;
+}
+
+.btn-edit {
+    background: #fff;
+    border-color: #1976d2;
+    color: #1976d2;
+    padding: 4px 10px;
+    font-size: 12px;
+}
+
+.btn-edit:hover {
+    background: #e8f0fe;
+}
+
+.btn-save-edit {
+    background: #2e7d32;
+    border-color: #2e7d32;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 12px;
+}
+
+.btn-save-edit:hover {
+    background: #1b5e20;
+    border-color: #1b5e20;
+}
+
+.btn-cancel-edit {
+    background: #fff;
+    border-color: #757575;
+    color: #424242;
+    padding: 4px 10px;
+    font-size: 12px;
+}
+
+.btn-cancel-edit:hover {
+    background: #f5f5f5;
+}
+
+/* ===== Character-mapping edit panel ===== */
+.chars-edit-panel {
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    border-radius: 0 0 4px 0;
+    padding: 12px 16px 14px;
+}
+
+.chars-edit-pair {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.chars-edit-field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.chars-edit-field label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.chars-edit-field textarea {
+    resize: vertical;
+    font-family: monospace;
+    font-size: 12px;
+    padding: 6px 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background: #fff;
+    color: #212529;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    min-height: 52px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.chars-edit-field textarea:focus {
+    outline: none;
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.15);
+}
+
+.chars-edit-sep {
+    font-size: 16px;
+    color: #6c757d;
+    padding-top: 22px;
+    flex-shrink: 0;
+}
+
+.chars-edit-hint {
+    font-size: 11px;
+    color: #6c757d;
+    margin: 6px 0 0;
+}
+
+/* ===== Buttons ===== */
+.btn {
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    transition:
+        background 0.15s,
+        border-color 0.15s,
+        box-shadow 0.15s;
+    line-height: 1.5;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.3);
+}
+
+.btn-primary {
+    background: #1976d2;
+    border-color: #1976d2;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #1565c0;
+    border-color: #1565c0;
+}
+
+.btn-success {
+    background: #2e7d32;
+    border-color: #2e7d32;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background: #1b5e20;
+    border-color: #1b5e20;
+}
+
+.btn-success:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.btn-danger,
+.btn-remove {
+    background: #c62828;
+    border-color: #c62828;
+    color: #fff;
+    padding: 6px 14px;
+    font-size: 13px;
+}
+
+.btn-danger:hover,
+.btn-remove:hover {
+    background: #b71c1c;
+    border-color: #b71c1c;
+}
+
+/* ===== Save bar ===== */
+.save-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 14px;
+    padding: 16px 20px;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.save-status {
+    font-size: 13px;
+    font-weight: 500;
+    color: #2e7d32;
+}
+
+.save-status.error {
+    color: #c62828;
+}
+
+/* Direction toggle button */
+.direction-toggle {
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    background: #fff;
+    font-size: 15px;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        background 0.15s,
+        border-color 0.15s,
+        color 0.15s;
+    min-width: 34px;
+    text-align: center;
+    font-weight: 700;
+    color: #495057;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.direction-toggle:hover {
+    background: #f8f9fa;
+    border-color: #adb5bd;
+}
+
+.direction-toggle.dir-auto {
+    color: #105faf;
+    border-color: #105faf;
+    background: #e8f0fe;
+}
+
+.direction-toggle.dir-forward {
+    color: #2e7d32;
+    border-color: #2e7d32;
+    background: #e8f5e9;
+}
+
+.direction-toggle.dir-reverse {
+    color: #bd4200;
+    border-color: #bd4200;
+    background: #fff9f0;
+}
+
+.direction-toggle:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.2);
+}
+
+.vertical-divider {
+    width: 1px;
+    height: 24px;
+    background: #dee2e6;
+    margin: 0 12px;
+}
+
+/* ===== Live Test Area ===== */
+.test-area-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.test-area {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 15px;
+    font-family: inherit;
+    resize: vertical;
+    background: #fff;
+    color: #212529;
+    transition:
+        border-color 0.15s,
+        box-shadow 0.15s;
+}
+
+.test-area:focus {
+    outline: none;
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.15);
+}
+
+.test-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.btn-test {
+    background: #1976d2;
+    color: #fff;
+    padding: 7px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 4px;
+    border: 1px solid #1976d2;
+    cursor: pointer;
+    transition:
+        background 0.15s,
+        border-color 0.15s;
+}
+
+.btn-test:hover {
+    background: #1565c0;
+    border-color: #1565c0;
+}
+
+.btn-test.auto {
+    background: #fff;
+    color: #1976d2;
+    border-color: #1976d2;
+}
+
+.btn-test.auto:hover {
+    background: #e8f0fe;
+}
+
+.test-hint {
+    font-size: 12px;
+    color: #6c757d;
+    min-height: 1.4em;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+    body {
+        padding: 12px 8px;
+    }
+
+    header,
+    .section {
+        padding: 16px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .shortcut-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .shortcut-input-group {
+        width: 100%;
+    }
+
+    .save-container {
+        justify-content: center;
+    }
+}
